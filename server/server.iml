@@ -11,6 +11,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: io.pivotal.gemfire:geode-core:9.0.1" level="project" />
+    <orderEntry type="library" name="Maven: io.pivotal.gemfire:geode-wan:9.0.1" level="project" />
+    <orderEntry type="library" name="Maven: io.pivotal.gemfire:geode-cq:9.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-rest:1.4.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:1.4.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:1.4.3.RELEASE" level="project" />
