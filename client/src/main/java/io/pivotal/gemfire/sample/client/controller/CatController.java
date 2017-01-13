@@ -9,13 +9,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
+import io.pivotal.gemfire.sample.client.builder.CatBuilder;
 import io.pivotal.gemfire.sample.common.entity.Cat;
 
 @RestController
 class CatController {
     
-	@Autowired private Region<Integer, Cat> catRegion;
-
+	@Autowired
+    CatBuilder catBuilder;
+	
+	@Autowired 
+	private Region<Integer, Cat> catRegion;	
+	
     @RequestMapping(value = "/cat/{id}", method = GET)
     public Cat getCat(@PathVariable("id") Integer id) {
         return (Cat) catRegion.get(id);
@@ -23,6 +28,8 @@ class CatController {
     
     @RequestMapping(value = "/cat/{id}", method = PUT)
     public Cat newCat(@PathVariable("id") Integer id) {
-        return null;
+    	Cat c = catBuilder.buildCat(id);
+    	catRegion.put(id, c);
+    	return c;    
     }
 }

@@ -20,7 +20,7 @@
                 org.apache.geode.pdx.ReflectionBasedAutoSerializer
             </class-name>
 			<parameter name="classes">
-				<string>io.pivotal.entity.*</string>
+				<string>io.pivotal.gemfire.sample.common.entity.*</string>
 			</parameter>
 		</pdx-serializer>
 	</pdx>

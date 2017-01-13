@@ -18,10 +18,10 @@ public class Animal {
 		this.isPet = isPet;
 	}	
 	
-	int getId() {
+	public int getId() {
 		return id;
 	}
-	void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	

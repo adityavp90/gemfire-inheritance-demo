@@ -34,7 +34,7 @@ public class ClientCacheConfiguration {
 
         ccf.addPoolLocator(locatorHost, locatorPort);
 
-        ccf.setPdxPersistent(false);
+        ccf.setPdxPersistent(true);
         ccf.setPdxReadSerialized(false);
         ccf.setPdxSerializer(new ReflectionBasedAutoSerializer("io.pivotal.gemfire.sample.common.entity.*"));
 
