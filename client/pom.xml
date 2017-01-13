@@ -48,6 +48,16 @@
             <artifactId>geode-core</artifactId>
             <version>1.0.0-incubating</version>
         </dependency>
+        <dependency>
+        	<groupId>io.pivotal.gemfire.sample.common</groupId>
+        	<artifactId>common</artifactId>
+        	<version>1.0-SNAPSHOT</version>
+        </dependency>
+<!--         <dependency> -->
+<!--         	<groupId>io.pivotal.gemfire.sample.common</groupId> -->
+<!--         	<artifactId>common-v2</artifactId> -->
+<!--         	<version>1.0-SNAPSHOT</version> -->
+<!--         </dependency> -->
     </dependencies>
 
     <build>
