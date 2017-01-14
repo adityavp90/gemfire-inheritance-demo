@@ -26,6 +26,7 @@
 
     <modules>
         <module>../common</module>
+        <module>../common-v2</module>
         <module>../server</module>
         <module>../client</module>
         <module>../client-v2</module>

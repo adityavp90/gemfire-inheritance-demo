@@ -12,7 +12,7 @@ public class CatBuilder {
 		
 		c.setId(id);
 	    c.setFirstName("Garfield" + id);
-	    c.setLastName("Sobers" + id);
+	    c.setLastName("TheCat" + id);
 	    c.setAge(2);
 	    c.setPet(true);        
 		return c;
