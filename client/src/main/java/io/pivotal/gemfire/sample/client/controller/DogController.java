@@ -2,6 +2,7 @@ package io.pivotal.gemfire.sample.client.controller;
 
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
+import org.apache.geode.cache.execute.FunctionService;
 import org.apache.geode.cache.query.Query;
 import org.apache.geode.cache.query.QueryService;
 import org.apache.geode.cache.query.SelectResults;
@@ -52,11 +53,10 @@ class DogController {
 	public String getDogByFirstName(@PathVariable("firstName") String firstName) throws Exception {
 		Gson dogGson = new Gson();
 		List<String> dogList = new ArrayList<>();
-
-		String queryString = "SELECT * FROM /Dog WHERE firstName = $1";
-
 		Object[] params = new Object[1];
 		params[0] = firstName;
+		
+		String queryString = "SELECT * FROM /Dog WHERE firstName = $1";
 
 		QueryService queryService = cache.getQueryService();
 		Query query = queryService.newQuery(queryString);
@@ -73,5 +73,11 @@ class DogController {
 			return dogList.toString();
 		}
 	}
-
 }
+//	@RequestMapping(value = "/dog/setLastNameToFirstName", method = GET)
+//	public String setLastNameToFirstName(){
+//		FunctionService.registerFunction(FirstNameMigration);		
+//		return null;		
+//	}
+// nmki, 
+//}

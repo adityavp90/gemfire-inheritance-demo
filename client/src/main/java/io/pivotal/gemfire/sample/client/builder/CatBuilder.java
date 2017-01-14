@@ -11,7 +11,7 @@ public class CatBuilder {
 		Cat c = new Cat();
 		
 		c.setId(id);
-	    c.setName("Garfield" + id);
+	    c.setName("Garfield Sobers" + id);
 	    c.setAge(12);
 	    c.setPet(true);        
 		return c;
