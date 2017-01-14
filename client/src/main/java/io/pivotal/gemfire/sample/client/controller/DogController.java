@@ -1,11 +1,6 @@
 package io.pivotal.gemfire.sample.client.controller;
 
 import org.apache.geode.cache.Region;
-import org.apache.geode.cache.client.ClientCache;
-import org.apache.geode.cache.execute.FunctionService;
-import org.apache.geode.cache.query.Query;
-import org.apache.geode.cache.query.QueryService;
-import org.apache.geode.cache.query.SelectResults;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -18,17 +13,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import io.pivotal.gemfire.sample.client.builder.DogBuilder;
+import io.pivotal.gemfire.sample.client.repository.DogRepository;
 import io.pivotal.gemfire.sample.common.entity.Dog;
 
 @RestController
 class DogController {
 
 	@Autowired
-	ClientCache cache;
+	private DogRepository dogRepo;
 
 	@Autowired
 	DogBuilder dogBuilder;
@@ -38,7 +33,7 @@ class DogController {
 
 	@RequestMapping(value = "/dog/{id}", method = GET)
 	public Dog getDog(@PathVariable("id") Integer id) {
-		return (Dog) dogRegion.get(id);
+		return dogRepo.findById(id);
 	}
 
 	@RequestMapping(value = "/dog/{id}", method = PUT)
@@ -48,36 +43,16 @@ class DogController {
 		return d;
 	}
 
-	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/dog/byFirstName/{firstName}", method = GET)
-	public String getDogByFirstName(@PathVariable("firstName") String firstName) throws Exception {
+	public String getDogByFirstName(@PathVariable("firstName") String firstName) {
 		Gson dogGson = new Gson();
-		List<String> dogList = new ArrayList<>();
-		Object[] params = new Object[1];
-		params[0] = firstName;
+		List<String> dogStringList = new ArrayList<>();
+		List<Dog> dogList = dogRepo.findByFirstName(firstName);
 		
-		String queryString = "SELECT * FROM /Dog WHERE firstName = $1";
-
-		QueryService queryService = cache.getQueryService();
-		Query query = queryService.newQuery(queryString);
-
-		SelectResults results = (SelectResults) query.execute(params);
-
-		if (results.isEmpty()) {
-			throw new Exception();
-		} else {
-			for (Iterator iter = results.iterator(); iter.hasNext();) {
-				Dog dog = (Dog) iter.next();
-				dogList.add(dogGson.toJson(dog));
-			}
-			return dogList.toString();
-		}
+		for (Dog d : dogList){
+			dogStringList.add(dogGson.toJson(d));
+		}		
+		return dogStringList.toString();
 	}
+
 }
-//	@RequestMapping(value = "/dog/setLastNameToFirstName", method = GET)
-//	public String setLastNameToFirstName(){
-//		FunctionService.registerFunction(FirstNameMigration);		
-//		return null;		
-//	}
-// nmki, 
-//}

@@ -10,7 +10,7 @@ public class DogBuilder {
 	public Dog buildDog(int id){
 		Dog d = new Dog();
         d.setId(id);
-        d.setFirstName("Scooby" + id);
+        d.setFirstName("Scooby");
         d.setLastName("Doo" + id);
         d.setAge(5);
         d.setPet(true);

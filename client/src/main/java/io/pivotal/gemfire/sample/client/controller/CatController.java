@@ -11,19 +11,22 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 import io.pivotal.gemfire.sample.client.builder.CatBuilder;
 import io.pivotal.gemfire.sample.common.entity.Cat;
+import io.pivotal.gemfire.sample.client.repository.CatRepository;
 
-@RestController
+@RestController()
 class CatController {
-    
 	@Autowired
-    CatBuilder catBuilder;
+	private CatRepository catRepo; 
 	
 	@Autowired 
-	private Region<Integer, Cat> catRegion;	
+	private Region<Integer, Cat> catRegion;
+	
+	@Autowired
+	private CatBuilder catBuilder;
 	
     @RequestMapping(value = "/cat/{id}", method = GET)
     public Cat getCat(@PathVariable("id") Integer id) {
-        return (Cat) catRegion.get(id);
+    	return catRepo.findCatById(id);
     }
     
     @RequestMapping(value = "/cat/{id}", method = PUT)

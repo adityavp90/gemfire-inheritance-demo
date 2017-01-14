@@ -9,11 +9,13 @@ import org.apache.geode.pdx.ReflectionBasedAutoSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 
 import io.pivotal.gemfire.sample.common.entity.Cat;
 import io.pivotal.gemfire.sample.common.entity.Dog;
 
 @Configuration
+@EnableGemfireRepositories("io.pivotal.gemfire.sample.client.repository")
 public class ClientCacheConfiguration {
     
     /*
